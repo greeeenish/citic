@@ -70,9 +70,11 @@
         height: 100px;
         float: left;
         margin: 1%;
+        cursor: pointer;
 
         .text {
-
+            text-align: center;
+            line-height: 60px;
         }
     }
 </style>

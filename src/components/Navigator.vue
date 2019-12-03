@@ -20,12 +20,42 @@
             </el-submenu>
 
         </el-menu>
+        <div class="login">
+            <i class="el-icon-user"></i>
+            <span @click="login">登陆</span>/
+            <span>注册</span>
+        </div>
+
+        <!--登陆-->
+        <el-dialog
+            :visible.sync="dialogVisible"
+            width="30%">
+            <el-input v-model="identify" placeholder="身份证号"></el-input>
+            <el-input placeholder="密码" v-model="password" show-password></el-input>
+
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
     export default {
-        name: "navigator"
+        name: "navigator",
+        data(){
+          return {
+              dialogVisible: false,
+              identify:'',
+              password:''
+          }
+        },
+        methods: {
+            login(){
+                this.dialogVisible = true
+            }
+        }
     }
 </script>
 
@@ -42,7 +72,6 @@
         float: left;
         margin-top: 10px;
         margin-left: 20px;
-        font-size: large;
         border-bottom: 0px transparent !important;
     }
     .el-menu-item {
@@ -50,5 +79,15 @@
 
     a {
         text-decoration: none;
+    }
+
+    .login {
+        float: right;
+        margin-right: 10px;
+        margin-top: 30px;
+
+        span {
+            cursor: pointer;
+        }
     }
 </style>

@@ -33,10 +33,7 @@
 </template>
 
 <script>
-    import ElFooter from "element-ui/packages/footer/src/main";
-
     export default {
-        components: {ElFooter},
         name: "footbar"
     }
 </script>
@@ -44,11 +41,7 @@
 <style scoped>
     .footer {
         background-color: #67767f;
-        width: 100%;
         height: 200px;
-        /*position: relative;*/
-        /*bottom: -200px;*/
-
     }
 
     .index-columns {

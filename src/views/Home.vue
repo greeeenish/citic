@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss">
   .content {
-
+    flex: 1;
   }
 
   img {

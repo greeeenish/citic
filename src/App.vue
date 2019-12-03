@@ -21,16 +21,19 @@ export default {
 
 <style lang="scss">
   html{
-
+    height: 100%;
   }
   body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x:hidden;
+
     display: flex;
     flex-direction: column;
   }
   #app {
-    height: 100%;
+    min-height: 100%;
   }
 
   .clearfix:before,
@@ -45,4 +48,5 @@ export default {
   .el-menu--horizontal>.el-submenu .el-submenu__title {
     font-size: 16px;
   }
+
 </style>
