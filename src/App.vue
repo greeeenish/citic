@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <navigator></navigator>
     <router-view/>
+    <footbar></footbar>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import navigator from '@/components/Navigator.vue'
+import footbar from '@/components/Footbar.vue'
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+    name: 'App',
+    components: {
+        navigator,
+        footbar
     }
-  }
 }
+</script>
+
+<style lang="scss">
+  html{
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  #app {
+    height: 100%;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .el-menu--horizontal>.el-submenu .el-submenu__title {
+    font-size: 16px;
+  }
 </style>
