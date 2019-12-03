@@ -21,13 +21,13 @@ export default {
 
 <style lang="scss">
   html{
-    height: 100%;
+
   }
   body {
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    height: 100%;
   }
   #app {
     height: 100%;

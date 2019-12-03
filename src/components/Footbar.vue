@@ -1,6 +1,5 @@
 <template>
     <div class="footer">
-
         <div class="index-columns">
             <div class="index-column">
                 <h3>联系我们</h3>
@@ -45,10 +44,11 @@
 <style scoped>
     .footer {
         background-color: #67767f;
-        position: absolute;
-        bottom: 0;
         width: 100%;
-        height: auto;
+        height: 200px;
+        /*position: relative;*/
+        /*bottom: -200px;*/
+
     }
 
     .index-columns {
