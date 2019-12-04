@@ -25,7 +25,8 @@
                             action="https://jsonplaceholder.typicode.com/posts/"
                             :on-preview="handlePreview"
                             :on-remove="handleRemove"
-                            :before-remove="beforeRemove">
+                            :before-remove="beforeRemove"
+                            show-file-list=true>
                             <el-button size="small" type="primary">点击上传</el-button>
                         </el-upload>
                     
@@ -41,9 +42,17 @@
     </div>
     <div class="applyProcess">
         <el-tag class="tipsTitle">申请流程</el-tag>
+        <div>
+            <img alt="申请流程" src="../assets/ageAllowance.png" class='ageAllowanceImg'>
+        </div>
+
     </div>
     <div class="downloadFiles">
         <el-tag class="tipsTitle">材料下载</el-tag>
+        <div class="filesList">
+            <a id="linkUrl1" href="" class="linkType" title="下载">高龄津贴申请材料清单</a>
+            <a id="linkUrl2" href="" class="linkType" title="下载">高龄津贴申请表</a>
+        </div>
     </div>
 </div>
 </template>
@@ -109,6 +118,10 @@ export default {
    margin-left:400%;
 }
 .tipsTitle{
+
+    color:white;
+    background-color:#E8313e;
+    font-size:16px;
    
     color:white;
     background-color:#E8313e;
@@ -143,4 +156,20 @@ export default {
     display:-webkit-inline-box;
     margin-left:20px
 }*/
+.linkType{
+    display:block
+
+}
+.filesList{
+    margin-top:10px;
+    margin-bottom:30px;
+}
+.downloadFiles{
+    margin-top:20px
+}
+.ageAllowanceImg{
+    margin:20px;
+    width:60%;
+    height:60%
+}
 </style>
