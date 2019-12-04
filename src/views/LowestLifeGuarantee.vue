@@ -1,9 +1,9 @@
 <template>
 <div class="mainPage">
-    <div class="currentLocation">当前位置：首页 > 最新服务 > 高龄津贴</div>
+    <div class="currentLocation">当前位置：首页 > 最新服务 > 城市最低生活保障金</div>
     </br>
     <div class="first-inline">
-        <div class="line"><div class="redTag"></div>高龄津贴</div>
+        <div class="line"><div class="redTag"></div>城市最低生活保障金</div>
         <div class="applyBtn">
             <!-- Form -->
             <el-button type="text" @click="dialogFormVisible = true" class="tipsTitle1">在线申请入口</el-button>
@@ -11,7 +11,7 @@
             <el-dialog title="" :visible.sync="dialogFormVisible">
             <div class="applyHead">
                 <img class="applyLogo" src="../assets/logo.jpg"/>
-                <span class="applyTileText"><span class="firstText"> | 政务一卡通 </span>| 高龄津贴申请</span>
+                <span class="applyTileText"><span class="firstText"> | 政务一卡通 </span>| 城市最低生活保障金申请</span>
              </div>
                 <el-form :model="form">
                     
@@ -50,8 +50,8 @@
     <div class="downloadFiles">
         <el-tag class="tipsTitle">材料下载</el-tag>
         <div class="filesList">
-            <a id="linkUrl1" href="" class="linkType" title="下载">高龄津贴申请材料清单</a>
-            <a id="linkUrl2" href="" class="linkType" title="下载">高龄津贴申请表</a>
+            <a id="linkUrl1" href="" class="linkType" title="下载">城市最低生活保障金申请材料清单</a>
+            <a id="linkUrl2" href="" class="linkType" title="下载">城市最低生活保障金申请表</a>
         </div>
     </div>
 </div>

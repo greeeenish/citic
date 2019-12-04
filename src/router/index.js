@@ -26,6 +26,38 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AgeAllowance.vue')
+  },
+  {
+    path: '/disableFederation',
+    name: 'disableFederation',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/DisableFederation.vue')
+  },
+  {
+    path: '/employmentIncentive',
+    name: 'employmentIncentive',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/EmploymentIncentive.vue')
+  },
+  {
+    path: '/lowestLifeGuarantee',
+    name: 'lowestLifeGuarantee',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/LowestLifeGuarantee.vue')
+  },
+  {
+    path: '/orphanAllowance',
+    name: 'orphanAllowance',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/OrphanAllowance.vue')
   }
 ]
 

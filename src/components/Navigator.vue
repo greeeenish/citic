@@ -12,11 +12,11 @@
 
             <el-submenu index="">
                 <template slot="title">我要申请</template>
-                <el-menu-item index="3-1">城市最低生活保障金</el-menu-item>
-                <el-menu-item index="3-2">残疾人保障金</el-menu-item>
-                <el-menu-item index="3-3">大学生创业吸纳就业奖励</el-menu-item>
+                <el-menu-item index="lowestLifeGuarantee">城市最低生活保障金</el-menu-item>
+                <el-menu-item index="disableFederation">残疾人保障金</el-menu-item>
+                <el-menu-item index="employmentIncentive">大学生创业吸纳就业奖励</el-menu-item>
                 <el-menu-item index="ageAllowance">高龄津贴</el-menu-item>
-                <el-menu-item index="3-5">分散孤儿价格临时补贴</el-menu-item>
+                <el-menu-item index="orphanAllowance">分散孤儿价格临时补贴</el-menu-item>
             </el-submenu>
 
         </el-menu>
