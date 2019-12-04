@@ -21,8 +21,9 @@
         },
         methods: {
             getData(){
-                this.axios.get('api/getData').then((response)=>{
+                this.axios.get('api/getUserInfo ').then((response)=>{
                     this.data=response.data;
+                    console.log(response)
                 }).catch((response)=>{
                     console.log(response);
                 })

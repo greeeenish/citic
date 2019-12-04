@@ -30,8 +30,18 @@
         <el-dialog
             :visible.sync="dialogVisible"
             width="30%">
-            <el-input v-model="identify" placeholder="身份证号"></el-input>
-            <el-input placeholder="密码" v-model="password" show-password></el-input>
+            <div class="applyHead">
+                <img class="applyLogo" src="../assets/logo.jpg"/>
+                <span class="applyTileText"><span class="firstText"> | 政务一卡通 </span>| 登陆</span>
+            </div>
+
+            <el-input class="input" v-model="identify" placeholder="身份证号"></el-input>
+            <el-input class="input" placeholder="密码" v-model="password" show-password></el-input>
+
+            <el-radio-group v-model="userMode">
+                <el-radio :label="1">用户登陆</el-radio>
+                <el-radio :label="2">管理员登陆</el-radio>
+            </el-radio-group>
 
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
@@ -48,7 +58,8 @@
           return {
               dialogVisible: false,
               identify:'',
-              password:''
+              password:'',
+              userMode: 1
           }
         },
         methods: {
@@ -89,5 +100,14 @@
         span {
             cursor: pointer;
         }
+    }
+
+    .input {
+        margin: 10px 0 10px 0px
+    }
+    .applyLogo{
+        width:120px;
+        vertical-align: middle;
+
     }
 </style>
