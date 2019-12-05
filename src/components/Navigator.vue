@@ -36,7 +36,7 @@
                 width="30%">
             <div class="applyHead">
                 <img class="applyLogo" src="../assets/logo.jpg"/>
-                <span class="applyTileText"><span class="firstText"> | 政务一卡通 </span>| 登陆</span>
+                <span class="applyTileText"><span class="firstText"> | 政务一网通 </span>| 登陆</span>
             </div>
 
             <el-input class="input" v-model="identify" placeholder="身份证号"></el-input>
@@ -60,7 +60,7 @@
                 width="60%">
             <div class="applyHead">
                 <img class="applyLogo" src="../assets/logo.jpg"/>
-                <span class="applyTileText"><span class="firstText"> | 政务一卡通 </span>| 注册</span>
+                <span class="applyTileText"><span class="firstText"> | 政务一网通 </span>| 注册</span>
             </div>
 
             <el-form :model="regForm" ref="regForm" label-width="150px" class="form">
@@ -211,11 +211,15 @@
             submitForm(formName) {
                 // console.log()
                 this.axios.post('api/register', this.$refs[formName].model).then((response) => {
-                    this.$message({
-                        message: '注册成功',
-                        type: 'success'
-                    });
-                    this.registerVisible = false
+                    if(response.data.meta.success){
+                        this.$message({
+                            message: '注册成功',
+                            type: 'success'
+                        });
+                        this.registerVisible = false
+                    } else {
+                        this.$message.error('注册失败！' + response.data.meta.message)
+                    }
                 }).catch((response) => {
                     this.$message.error('注册失败')
                 })

@@ -23,7 +23,7 @@
                 </figcaption>
             </figure>
 
-            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('disableFederation')">
+            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('ageAllowance')">
                 <img src="../assets/p4.jpg" alt="Sample Image">
                 <figcaption>
                     高龄津贴

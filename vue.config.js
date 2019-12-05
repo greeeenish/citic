@@ -5,7 +5,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://218.194.24.20:8080/api/',
+        target: 'http://192.168.43.87:8080/api/',
         // target: 'https://easy-mock.com/mock/5c18a62c29e94a194029f501/example',
         changeOrigin: true,
         ws: true,

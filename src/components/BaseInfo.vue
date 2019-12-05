@@ -1,15 +1,5 @@
 <template>
-    <!--<ul class="info-list">-->
-            <!--<li>姓名：<span>{{data.user_name}}</span></li>-->
-            <!--<li>身份证号：<span>{{data.user_id}}</span></li>-->
-            <!--<li>性别：<span>{{data.user_sex}}</span></li>-->
-            <!--<li>民族：<span>{{data.nation}}</span></li>-->
-            <!--<li>联系电话：<span>{{data.user_phone}}</span></li>-->
-            <!--<li>户口所在地：<span>{{data.user_add}}</span></li>-->
-            <!--<li>居住地址：<span>{{data.user_add}}</span></li>-->
-            <!--<li>银行卡号：<span>{{data.id_card}}</span></li>-->
-    <!--</ul>-->
-    <div style="width: 60%">
+    <div style="width: 60%; margin-bottom: 30px">
         <el-form :model="userinfo" ref="userinfo" label-width="150px" class="form">
             <el-row>
                 <el-col :span="12">
