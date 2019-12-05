@@ -36,7 +36,7 @@
                 width="30%">
             <div class="applyHead">
                 <img class="applyLogo" src="../assets/logo.jpg"/>
-                <span class="applyTileText"><span class="firstText"> | 政务一网通 </span>| 登陆</span>
+                <span class="applyTileText"><span class="firstText"> | 便民普惠服务平台 </span>| 登陆</span>
             </div>
 
             <el-input class="input" v-model="identify" placeholder="身份证号"></el-input>
@@ -60,7 +60,7 @@
                 width="60%">
             <div class="applyHead">
                 <img class="applyLogo" src="../assets/logo.jpg"/>
-                <span class="applyTileText"><span class="firstText"> | 政务一网通 </span>| 注册</span>
+                <span class="applyTileText"><span class="firstText"> | 便民普惠服务平台 </span>| 注册</span>
             </div>
 
             <el-form :model="regForm" ref="regForm" label-width="150px" class="form">
