@@ -19,6 +19,10 @@
                 <el-menu-item index="orphanAllowance">分散孤儿价格临时补贴</el-menu-item>
             </el-submenu>
 
+            <el-menu-item class="el-menu-item" index="quick">
+                中信普惠快贷
+            </el-menu-item>
+
         </el-menu>
         <div class="login" v-if="!isLogin">
             <i class="el-icon-user"></i>
@@ -100,7 +104,7 @@
                 </el-form-item>
 
                 <el-form-item label="住址" prop="user_add">
-                    <el-input v-model="regForm.user_add" style="width: 90%;"></el-input>
+                    <el-input v-model="regForm.user_add" style="width: 85%;"></el-input>
                     <!--<el-input v-model="regForm.user_add"></el-input>-->
                     <!--<el-col :span="4">-->
                         <!--<el-form-item prop="user_add1">-->
@@ -209,6 +213,7 @@
             logout() {
                 sessionStorage.removeItem('isLogin');
                 this.isLogin = false
+                this.$router.push('/')
             },
             submitForm(formName) {
                 // console.log()

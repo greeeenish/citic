@@ -27,6 +27,7 @@
                     <el-table-column
                             prop="type_name"
                             label="申请项目">
+                        大学生创业吸纳就业奖励
                     </el-table-column>
                     <el-table-column
                             prop="add4"
@@ -61,6 +62,7 @@
                     <el-table-column
                             prop="type_name"
                             label="申请项目">
+                        大学生创业吸纳就业奖励
                     </el-table-column>
                     <el-table-column
                             prop="add4"
@@ -102,7 +104,7 @@
             </el-tab-pane>
         </el-tabs>
 
-        <el-dialog title="审批" :visible.sync="approvalFormVisible">
+        <el-dialog title="审批" :visible.sync="approvalFormVisible" ref="approvalForm">
             <el-form :model="approvalForm">
                 <el-form-item label="">
                     <el-radio-group v-model="approvalForm.result">
@@ -146,7 +148,9 @@
                 rows.splice(index, 1);
             },
             showApprovalFormVisible(index, rows) {
+                console.log(rows)
                 this.approvalFormVisible = true;
+                this.select_id = rows[index].apply_id
             },
             getHistoryData() {
                 this.axios.post('api/applyHistory',{
@@ -190,7 +194,6 @@
                         this.appropriationVisible = false,
                         this.approvalVisible = false
                         // 请求
-
                         this.axios.post('api/showData',{
                             id_card: sessionStorage.getItem('id_card'),
                             user_name: sessionStorage.getItem('user_name'),
@@ -218,13 +221,65 @@
                         })
 
                     } else if (res.data.data.user_type == 2) { //政务
-                        this.deleteVisible = false,
-                            this.appropriationVisible = false,
-                            this.approvalVisible = true
+                        this.deleteVisible = false
+                        this.appropriationVisible = false
+                        this.approvalVisible = true
+                        // 请求
+                        this.axios.post('api/showData',{
+                            id_card: sessionStorage.getItem('id_card'),
+                            user_name: sessionStorage.getItem('user_name'),
+                        }).then((res) => {
+                            this.processData = res.data.data;
+                            for (let item in res.data.data){
+                                switch (res.data.data[item].type_id){
+                                    case 1:
+                                        this.processData[item].type_name = '城市最低生活保障金'
+                                        break
+                                    case 2:
+                                        this.processData[item].type_name = '残疾人保障金'
+                                        break
+                                    case 3:
+                                        this.processData[item].type_name = '大学生创业吸纳就业奖励'
+                                        break
+                                    case 4:
+                                        this.processData[item].type_name = '高龄津贴'
+                                        break
+                                    case 5:
+                                        this.processData[item].type_name = '分散孤儿价格临时补贴'
+                                        break
+                                }
+                            }
+                        })
                     } else {      //银行
-                        this.deleteVisible = false,
-                            this.appropriationVisible = true,
-                            this.approvalVisible = false
+                        this.deleteVisible = false
+                        this.appropriationVisible = true
+                        this.approvalVisible = false
+                        // 请求
+                        this.axios.post('api/showData',{
+                            id_card: sessionStorage.getItem('id_card'),
+                            user_name: sessionStorage.getItem('user_name'),
+                        }).then((res) => {
+                            this.processData = res.data.data;
+                            for (let item in res.data.data){
+                                switch (res.data.data[item].type_id){
+                                    case 1:
+                                        this.processData[item].type_name = '城市最低生活保障金'
+                                        break
+                                    case 2:
+                                        this.processData[item].type_name = '残疾人保障金'
+                                        break
+                                    case 3:
+                                        this.processData[item].type_name = '大学生创业吸纳就业奖励'
+                                        break
+                                    case 4:
+                                        this.processData[item].type_name = '高龄津贴'
+                                        break
+                                    case 5:
+                                        this.processData[item].type_name = '分散孤儿价格临时补贴'
+                                        break
+                                }
+                            }
+                        })
                     }
 
                 }).catch(function (error) {
@@ -232,12 +287,16 @@
                 })
             },
             approval(formName) { //审批
-                this.axios.post('', this.$refs[formName].model).then((response) => {
+                this.axios.post('api/examine', {
+                    examine: this.$refs[formName].modal ,
+                    apply_id: this.select_id
+                }).then((response) => {
                     this.$message({
                         message: '审批成功',
                         type: 'success'
                     });
                     this.approvalFormVisible = false
+
                 }).catch((response) => {
                     this.$message.error('审批失败')
                 })
