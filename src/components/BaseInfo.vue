@@ -42,8 +42,8 @@
                 </el-col>
                 <el-col :span="12">
                     <el-form-item label="密码:" prop="passwd" class="inlineItem">
-                        <div v-if="!isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</div>
-                        <el-input v-if="isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</el-input>
+                        <div type="password" v-if="!isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</div>
+                        <el-input type="password" v-if="isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -79,8 +79,8 @@
                 </el-col>
                 <el-col :span="12">
                     <el-form-item label="工作单位:" prop="user_company" class="inlineItem">
-                        <div v-if="!isEdit" v-model="userinfo.user_bank">{{userinfo.user_bank}}</div>
-                        <el-input v-if="isEdit" v-model="userinfo.user_bank">{{userinfo.user_bank}}</el-input>
+                        <div v-if="!isEdit" v-model="userinfo.user_company">{{userinfo.user_company}}</div>
+                        <el-input v-if="isEdit" v-model="userinfo.user_company">{{userinfo.user_company}}</el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -150,7 +150,8 @@
                     is_elder: '',
                     nation: '',
                     login_name: '',
-                    passwd: ''
+                    passwd: '',
+                    passwd2: ''
                 },
                 isEdit: false
             }
@@ -163,6 +164,10 @@
                 }).catch((response)=>{
                     console.log(response);
                 })
+            },
+            submitForm(){
+                this.$message.success('保存成功')
+                this.isEdit = false
             }
         },
         mounted(){

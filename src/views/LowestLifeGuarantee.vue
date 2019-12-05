@@ -105,8 +105,8 @@
                             </el-col>
                             <el-col :span="12">
                                 <el-form-item label="密码:" prop="passwd" class="inlineItem">
-                                    <div v-if="!isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</div>
-                                    <el-input v-if="isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</el-input>
+                                    <div type="password" v-if="!isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</div>
+                                    <el-input type="password" v-if="isEdit" v-model="userinfo.passwd">{{userinfo.passwd}}</el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>

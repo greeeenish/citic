@@ -40,7 +40,7 @@
             </div>
 
             <el-input class="input" v-model="identify" placeholder="身份证号"></el-input>
-            <el-input style="margin-top: 20px" placeholder="密码" v-model="password" show-password></el-input>
+            <el-input type="password" style="margin-top: 20px" placeholder="密码" v-model="password" show-password></el-input>
 
             <el-radio-group v-model="userMode" style="margin-top: 20px">
                 <el-radio :label="1">用户</el-radio>
@@ -93,44 +93,45 @@
                 </el-form-item>
 
                 <el-form-item label="密码" prop="passwd" class="inlineItem">
-                    <el-input v-model="regForm.passwd"></el-input>
+                    <el-input type="password" v-model="regForm.passwd"></el-input>
                 </el-form-item>
-                <el-form-item label="确认密码" prop="passwd" class="inlineItem">
-                    <el-input v-model="regForm.passwd"></el-input>
+                <el-form-item label="确认密码" prop="passwd2" class="inlineItem">
+                    <el-input type="password" v-model="regForm.passwd2"></el-input>
                 </el-form-item>
 
                 <el-form-item label="住址" prop="user_add">
+                    <el-input v-model="regForm.user_add" style="width: 90%;"></el-input>
                     <!--<el-input v-model="regForm.user_add"></el-input>-->
-                    <el-col :span="4">
-                        <el-form-item prop="user_add1">
-                            <el-input placeholder="省/直辖市" v-model="regForm.user_add" style="width: 100%;"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col class="line" :span="1">-</el-col>
-                    <el-col :span="4">
-                        <el-form-item prop="user_add2">
-                            <el-input placeholder="市" v-model="regForm.user_add" style="width: 100%;"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col class="line" :span="1">-</el-col>
-                    <el-col :span="4">
-                        <el-form-item prop="user_add2">
-                            <el-input placeholder="区" v-model="regForm.user_add" style="width: 100%;"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col class="line" :span="1">-</el-col>
-                    <el-col :span="4">
-                        <el-form-item prop="user_add2">
-                            <el-input placeholder="街道" v-model="regForm.user_add" style="width: 100%;"></el-input>
-                        </el-form-item>
-                    </el-col>
+                    <!--<el-col :span="4">-->
+                        <!--<el-form-item prop="user_add1">-->
+                            <!--<el-input placeholder="省/直辖市" v-model="regForm.user_add" style="width: 100%;"></el-input>-->
+                        <!--</el-form-item>-->
+                    <!--</el-col>-->
+                    <!--<el-col class="line" :span="1">-</el-col>-->
+                    <!--<el-col :span="4">-->
+                        <!--<el-form-item prop="user_add2">-->
+                            <!--<el-input placeholder="市" v-model="regForm.user_add" style="width: 100%;"></el-input>-->
+                        <!--</el-form-item>-->
+                    <!--</el-col>-->
+                    <!--<el-col class="line" :span="1">-</el-col>-->
+                    <!--<el-col :span="4">-->
+                        <!--<el-form-item prop="user_add2">-->
+                            <!--<el-input placeholder="区" v-model="regForm.user_add" style="width: 100%;"></el-input>-->
+                        <!--</el-form-item>-->
+                    <!--</el-col>-->
+                    <!--<el-col class="line" :span="1">-</el-col>-->
+                    <!--<el-col :span="4">-->
+                        <!--<el-form-item prop="user_add2">-->
+                            <!--<el-input placeholder="街道" v-model="regForm.user_add" style="width: 100%;"></el-input>-->
+                        <!--</el-form-item>-->
+                    <!--</el-col>-->
                 </el-form-item>
 
                 <el-form-item label="户口所在地" prop="user_residence" class="inlineItem">
                     <el-input v-model="regForm.user_residence"></el-input>
                 </el-form-item>
                 <el-form-item label="工作单位" prop="user_company" class="inlineItem">
-                    <el-input v-model="regForm.user_bank"></el-input>
+                    <el-input v-model="regForm.user_company"></el-input>
                 </el-form-item>
 
                 <div>
@@ -189,7 +190,8 @@
                     is_elder: '',
                     nation: '',
                     login_name: '',
-                    passwd: ''
+                    passwd: '',
+                    passwd2: ''
                 },
 
                 user_name: '',
@@ -252,6 +254,14 @@
                 }).catch((response) => {
                     console.log(response)
                 })
+            }
+        },
+        mounted() {
+            if(sessionStorage.getItem('isLogin')=='true'){
+                this.isLogin = true
+                this.user_name = sessionStorage.getItem('user_name')
+            }else {
+                this.isLogin = false
             }
         }
     }
