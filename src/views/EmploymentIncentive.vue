@@ -317,14 +317,15 @@
                     // id_card: sessionStorage.getItem('id_card'),
                     // user_name: sessionStorage.getItem('user_name'),
                     // type_id: this.$route.name,
-                    user: this.$refs[userinfo].model,
-                    apply:{
-                        add1: sessionStorage.getItem('id_card'),
-                        add2: this.$refs[userinfo].model.user_name,
-                        add3: this.$route.name,
+                    // user: this.$refs[userinfo].model,
+                    // apply:{
+                        add1: this.$refs[userinfo].model.id_card,    //id_card
+                        add2: this.$refs[userinfo].model.user_name, //username
+                        type_id : this.$route.name,
                         add4: this.$refs[applyinfo].model.apply_number,
-                        add5: this.$refs[userinfo].model.user_bank
-                    }
+                        add5: this.$refs[userinfo].model.user_bank,
+
+                    // }
                 }
                 this.axios.post('api/applySave', obj).then((response) => {
                     if(response.data.meta.success){
