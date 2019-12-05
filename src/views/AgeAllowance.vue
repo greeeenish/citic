@@ -12,7 +12,7 @@
                 <el-dialog title="" :visible.sync="dialogFormVisible">
                     <div class="applyHead">
                         <img class="applyLogo" src="../assets/logo.jpg"/>
-                        <span class="applyTileText"><span class="firstText"> | 政务一网通 </span>| 高龄津贴申请</span>
+                        <span class="applyTileText"><span class="firstText"> | 便民普惠服务平台 </span>| 高龄津贴申请</span>
                     </div>
                     <el-form :model="form">
 
@@ -43,7 +43,7 @@
                 <el-dialog width="60%" style="margin-right: 50px" title="" :visible.sync="saveVisible">
                     <div class="applyHead">
                         <img class="applyLogo" src="../assets/logo.jpg"/>
-                        <span class="applyTileText"><span class="firstText"> | 政务一网通 </span>| 高龄津贴申请</span>
+                        <span class="applyTileText"><span class="firstText"> | 便民普惠服务平台 </span>| 高龄津贴申请</span>
                     </div>
 
                     <!--申请信息-->
@@ -209,7 +209,7 @@
             <el-col :span="20">
                 <div class="applyProcess" v-if="this.activeIndex==1">
                     <el-steps :active="5" align-center>
-                        <el-step title="步骤1" description="在中信银行政务一网通服务大厅注册"></el-step>
+                        <el-step title="步骤1" description="在中信银行便民普惠服务平台服务大厅注册"></el-step>
                         <el-step title="步骤2" description="准备申请文件"></el-step>
                         <el-step title="步骤3" description="线上申请"></el-step>
                         <el-step title="步骤4" description="等待机构审核结果(通过/不通过)"></el-step>
@@ -314,10 +314,18 @@
             },
             submitForm(formName) {
                 let obj = {
-                    id_card: sessionStorage.getItem('id_card'),
-                    user_name: sessionStorage.getItem('user_name'),
-                    type_id: this.$route.name,
-                    userInfo: this.$refs[formName].model
+                    // id_card: sessionStorage.getItem('id_card'),
+                    // user_name: sessionStorage.getItem('user_name'),
+                    // type_id: this.$route.name,
+                    // user: this.$refs[userinfo].model,
+                    // apply:{
+                        add1: this.$refs[userinfo].model.id_card,    //id_card
+                        add2: this.$refs[userinfo].model.user_name, //username
+                        type_id : this.$route.name,
+                        add4: this.$refs[applyinfo].model.apply_number,
+                        add5: this.$refs[userinfo].model.user_bank,
+
+                    // }
                 }
                 this.axios.post('api/applySave', obj).then((response) => {
                     if(response.data.meta.success){
