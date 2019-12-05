@@ -20,16 +20,20 @@
             </el-submenu>
 
         </el-menu>
-        <div class="login">
+        <div class="login" v-if="!isLogin">
             <i class="el-icon-user"></i>
-            <span @click="login">登陆</span>/
+            <span @click="login">登陆</span>|
             <span @click="register">注册</span>
+        </div>
+        <div class="login" v-if="isLogin">
+            <span>你好,</span><span @click="">{{this.user_name}}</span>|
+            <span @click="logout">退出</span>
         </div>
 
         <!--登陆-->
         <el-dialog
-            :visible.sync="loginVisible"
-            width="30%">
+                :visible.sync="loginVisible"
+                width="30%">
             <div class="applyHead">
                 <img class="applyLogo" src="../assets/logo.jpg"/>
                 <span class="applyTileText"><span class="firstText"> | 政务一卡通 </span>| 登陆</span>
@@ -45,7 +49,7 @@
             </el-radio-group>
 
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button @click="loginVisible = false">取 消</el-button>
                 <el-button type="primary" @click="doLogin()">确 定</el-button>
             </span>
         </el-dialog>
@@ -150,7 +154,7 @@
             </el-form>
 
             <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button @click="registerVisible = false">取 消</el-button>
                 <el-button type="primary" @click="submitForm('regForm')">确 定</el-button>
             </span>
         </el-dialog>
@@ -160,34 +164,38 @@
 <script>
     export default {
         name: "navigator",
-        data(){
-          return {
-              loginVisible: false,
-              registerVisible: false,
-              identify:'',
-              password:'',
-              userMode: 1,
+        data() {
+            return {
+                loginVisible: false,
+                registerVisible: false,
+                identify: '',
+                password: '',
+                userMode: 1,
 
-              regForm: {
-                  user_name: '',
-                  user_age: '',
-                  user_phone: '',
-                  id_card: '',
-                  user_card: '',
-                  user_add: '',
-                  user_residence: '',
-                  user_bank: '',
-                  user_sex: '',
-                  user_company: '',
-                  is_subsistence: '',
-                  is_disable: '',
-                  is_college: '',
-                  is_elder: '',
-                  nation: '',
-                  login_name: '',
-                  passwd: ''
-              }
-          }
+                regForm: {
+                    user_name: '',
+                    user_age: '',
+                    user_phone: '',
+                    id_card: '',
+                    user_card: '',
+                    user_add: '',
+                    user_residence: '',
+                    user_bank: '',
+                    user_sex: '',
+                    user_company: '',
+                    is_subsistence: '',
+                    is_disable: '',
+                    is_college: '',
+                    is_elder: '',
+                    nation: '',
+                    login_name: '',
+                    passwd: ''
+                },
+
+                user_name: '',
+
+                isLogin: false,
+            }
         },
         methods: {
             login() {
@@ -196,35 +204,48 @@
             register() {
                 this.registerVisible = true
             },
+            logout() {
+                sessionStorage.removeItem('isLogin');
+                this.isLogin = false
+            },
             submitForm(formName) {
                 // console.log()
-                this.axios.post('api/register',this.$refs[formName].model).then((response)=>{
+                this.axios.post('api/register', this.$refs[formName].model).then((response) => {
                     this.$message({
                         message: '注册成功',
                         type: 'success'
                     });
                     this.registerVisible = false
-                }).catch((response)=>{
+                }).catch((response) => {
                     this.$message.error('注册失败')
                 })
             },
             doLogin() {
-                this.axios.post('api/login',{
+                this.axios.post('api/login', {
                     id_card: this.identify,
                     passwd: this.password
-                }).then((response)=>{
-                    if(response.data.meta.success){
+                }).then((response) => {
+                    if (response.data.meta.success) {
                         this.$message({
                             message: '登陆成功',
                             type: 'success'
                         })
                         this.loginVisible = false
-                        //todo:保存登陆状态
-                    }else {
-                        this.$message.error('登陆失败！'+ response.data.meta.message)
+
+                        //保存登陆状态
+                        console.log(response.data.data)
+                        sessionStorage.setItem('isLogin', 'true');
+                        sessionStorage.setItem('user_id', response.data.data.user_id)
+                        sessionStorage.setItem('user_name', response.data.data.user_name)
+                        sessionStorage.setItem('id_card', response.data.data.id_card)
+                        this.user_name = response.data.data.user_name
+                        this.isLogin = true
+
+                    } else {
+                        this.$message.error('登陆失败！' + response.data.meta.message)
                     }
 
-                }).catch((response)=>{
+                }).catch((response) => {
                     console.log(response)
                 })
             }
@@ -247,8 +268,10 @@
         margin-left: 20px;
         border-bottom: 0px transparent !important;
     }
+
     .el-menu-item {
-        font-size: 16px;}
+        font-size: 16px;
+    }
 
     a {
         text-decoration: none;
@@ -256,7 +279,7 @@
 
     .login {
         float: right;
-        margin-right: 10px;
+        margin-right: 40px;
         margin-top: 30px;
 
         span {
@@ -267,8 +290,9 @@
     .input {
         margin: 30px 0 0 0
     }
-    .applyLogo{
-        width:120px;
+
+    .applyLogo {
+        width: 120px;
         vertical-align: middle;
 
     }

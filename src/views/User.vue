@@ -98,7 +98,8 @@
             return {
                 activeName: 'baseinfo',
                 historyData: [],
-                processData: []
+                processData: [],
+                userVisible: false
             }
         },
         components: {baseInfo},
@@ -108,19 +109,35 @@
                 rows.splice(index, 1);
             },
             getHistoryData() {
-                this.$axios.post('').then((res) => {
+                this.axios.post('api/applyHistory').then((res) => {
                     this.historyData = res.historyData;
                 }).catch(function (error) {
                     console.log(error);
                 })
             },
             getProcessData() {
-                this.$axios.post('').then((res) => {
+                this.axios.post('').then((res) => {
                     this.processData = res.processData;
                 }).catch(function (error) {
                     console.log(error);
                 })
+            },
+            getData(){
+                if(!sessionStorage.getItem('isLogin')){
+                    this.activeName = ''
+                    this.$message({
+                        message: '请先登陆',
+                        type: 'warning'
+                    })
+                }else {
+                    this.userVisible = true
+                    // this.getHistoryData()
+                    // this.getProcessData()
+                }
             }
+        },
+        mounted() {
+            this.getData()
         }
     }
 
@@ -129,7 +146,7 @@
 
 <style>
     .user {
-        height: calc(100% - 290px);
+        min-height: calc(100% - 290px);
         width: 90%;
         text-align: center;
         margin: auto;

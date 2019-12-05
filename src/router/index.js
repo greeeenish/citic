@@ -21,7 +21,7 @@ const routes = [
   },
   {
     path: '/ageAllowance',
-    name: 'ageAllowance',
+    name: '1',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: '/disableFederation',
-    name: 'disableFederation',
+    name: '2',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -37,7 +37,7 @@ const routes = [
   },
   {
     path: '/employmentIncentive',
-    name: 'employmentIncentive',
+    name: '3',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: '/lowestLifeGuarantee',
-    name: 'lowestLifeGuarantee',
+    name: '4',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -53,7 +53,7 @@ const routes = [
   },
   {
     path: '/orphanAllowance',
-    name: 'orphanAllowance',
+    name: '5',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

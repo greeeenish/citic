@@ -2,42 +2,60 @@
     <div class="container clearfix">
         <div class="title-container"><div class="box-title">最新<br>服务</div></div>
         <div class="box-container clearfix">
-            <el-card class="box-card">
-                <div class="text item">
+            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('lowestLifeGuarantee')">
+                <img src="../assets/p1.jpg" alt="Sample Image">
+                <figcaption>
                     城市最低生活保障金
-                </div>
-            </el-card>
-            <el-card class="box-card">
-                <div class="text item">
+                </figcaption>
+            </figure>
+
+            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('disableFederation')">
+                <img src="../assets/p2.jpg" alt="Sample Image">
+                <figcaption>
                     残疾人保障金
-                </div>
-            </el-card>
-            <el-card class="box-card">
-                <div class="text item">
-                    大学生创业吸纳就业奖励
-                </div>
-            </el-card>
-            <el-card class="box-card">
-                <div class="text item">
+                </figcaption>
+            </figure>
+
+            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('employmentIncentive')">
+                <img src="../assets/p3.jpg" alt="Sample Image">
+                <figcaption>
+                    大学生创业就业奖励
+                </figcaption>
+            </figure>
+
+            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('disableFederation')">
+                <img src="../assets/p4.jpg" alt="Sample Image">
+                <figcaption>
                     高龄津贴
-                </div>
-            </el-card>
-            <el-card class="box-card">
-                <div class="text item">
+                </figcaption>
+            </figure>
+
+            <figure class="box-card c4-izmir c4-border-center" @click="navigateTo('orphanAllowance')">
+                <img src="../assets/p5.jpg" alt="Sample Image">
+                <figcaption>
                     分散孤儿价格临时补贴
-                </div>
-            </el-card>
+                </figcaption>
+            </figure>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "services"
+        name: "services",
+        methods: {
+            navigateTo(path) {
+                this.$router.push('/' + path)
+            }
+        }
     }
 </script>
 
 <style scoped lang="scss">
+    @import '../style/izmir.min.css';
+    .c4-izmir{
+        --primary-color: #E8313E
+    }
     .container {
         margin-top: 10px;
         margin-bottom: 20px;
