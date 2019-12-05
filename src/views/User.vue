@@ -76,19 +76,50 @@
                             prop="operation"
                             label="操作">
                         <template slot-scope="scope">
-                            <el-button
-                                    @click.native.prevent="deleteRow(scope.$index, tableData)"
+                            <el-button 
+                                    :visible.sync="deleteVisible"
+                                    @click.native.prevent="deleteRow(scope.$index, processData)"
                                     type="text"
                                     size="small">
                                 撤销
+                            </el-button>
+                            <el-button
+                                    :visible.sync="approvalVisible"
+                                    @click="showApprovalFormVisible(scope.$index, processData)"
+                                    type="text"
+                                    size="small">
+                                审批
+                            </el-button>
+                            
+                            <el-button
+                                    :visible.sync="appropriationVisible"
+                                    @click.native.prevent="appropriation(scope.$index, processData)"
+                                    type="text"
+                                    size="small">
+                                拨款
                             </el-button>
                         </template>
                     </el-table-column>
                 </el-table>
             </el-tab-pane>
         </el-tabs>
+
+        <el-dialog title="审批" :visible.sync="approvalFormVisible">
+            <el-form :model="approvalForm" >
+                <el-form-item label="" >
+                    <el-radio-group v-model="approvalForm.result">
+                        <el-radio label="1" border>通过</el-radio>
+                        <el-radio label="0" border>不通过</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="approvalFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="approval('approvalForm')">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
-</template>
+    </template>
 
 <script>
     import baseInfo from "@/components/BaseInfo.vue";
@@ -97,9 +128,77 @@
         data() {
             return {
                 activeName: 'baseinfo',
-                historyData: [],
-                processData: [],
-                userVisible: false
+                historyData: [{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                },{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                },{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                },{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                }],
+                processData: [{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                    user_type:1
+                },{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                    user_type:1
+                },{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                    user_type:2
+                },{
+                    apply_time: '2016-05-02',
+                    user_name: '王小虎',
+                    id_card: '510897199401013243',
+                    type_name: '城市最低生活保障金',
+                    apply_number: '2500',
+                    apply_status: '通过',
+                    user_type:3
+                }],
+                userVisible: false,
+                deleteVisible:false,
+                appropriationVisible:false,
+                approvalVisible:false,
+                approvalFormVisible:false,
+                approvalForm:{
+                    result:"",
+                }
+
             }
         },
         components: {baseInfo},
@@ -107,6 +206,9 @@
         methods: {
             deleteRow(index, rows) {
                 rows.splice(index, 1);
+            },
+            showApprovalFormVisible(index,rows){
+                this.approvalFormVisible = true;
             },
             getHistoryData() {
                 this.axios.post('api/applyHistory').then((res) => {
@@ -118,9 +220,46 @@
             getProcessData() {
                 this.axios.post('').then((res) => {
                     this.processData = res.processData;
+                    if(res.processData.user_type == 1){ //用户
+                        this.deleteVisible=true,
+                        this.appropriationVisible=false,
+                        this.approvalVisible=false
+                    }else if(res.processData.user_type ==2){ //政务
+                        this.deleteVisible=false,
+                        this.appropriationVisible=false,
+                        this.approvalVisible=true
+                    }else{      //银行
+                        this.deleteVisible=false,
+                        this.appropriationVisible=true,
+                        this.approvalVisible=false
+                    }
                 }).catch(function (error) {
                     console.log(error);
                 })
+            },
+            approval(formName){ //审批
+                this.axios.post('', this.$refs[formName].model).then((response) => {
+                    this.$message({
+                        message: '审批成功',
+                        type: 'success'
+                    });
+                    this.approvalFormVisible = false
+                }).catch((response) => {
+                    this.$message.error('审批失败')
+                })
+            },
+            appropriation(){   //拨款
+                this.axios.post('').then((res) => {
+                    this.appropriationData = res.appropriationsData;
+                    if(res.appropriationData.type_id == 1){ //成功
+
+                    }else if(res.appropriationData.user_type == 0 ){ //失败
+                   
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                })
+
             },
             getData(){
                 if(!sessionStorage.getItem('isLogin')){
